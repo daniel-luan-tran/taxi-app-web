@@ -1,8 +1,7 @@
-import axios, { 
-    // authConfig 
-} from "./axios"
+import axios from // authConfig
+"./axios";
 
-export const homePage = async (): Promise<any> => {
-    const response = await axios.get<any>("/");
-    return response.data;
+export const homePage = async () => {
+  const response = await axios.get("/");
+  return response.data;
 };
