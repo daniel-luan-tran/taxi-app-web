@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios, { checkUser, loginAD, logout } from '../../api/axios';
+import axios, {
+  checkUser,
+  downloadAPK,
+  loginAD,
+  logout,
+} from '../../api/axios';
 // import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -51,6 +56,10 @@ const HomePage = () => {
     console.log(data);
   };
 
+  const download = async () => {
+    await downloadAPK();
+  };
+
   useEffect(() => {
     const fetchData = async () => {};
     fetchData();
@@ -59,16 +68,28 @@ const HomePage = () => {
   return (
     <>
       <h1>Home Page</h1>
-      {/* <h2>{message}</h2> */}
-      <button onClick={loginAD} style={{ background: 'green' }}>
-        Login Azure
-      </button>
-      <button onClick={checkUser} style={{ background: 'green' }}>
-        Check
-      </button>
-      <button onClick={logout} style={{ background: 'red' }}>
-        Logout Azure
-      </button>
+      <div>
+        <button
+          onClick={loginAD}
+          style={{ background: 'green', marginRight: 10 }}
+        >
+          Login Azure
+        </button>
+        <button
+          onClick={checkUser}
+          style={{ background: 'green', marginRight: 10 }}
+        >
+          Check
+        </button>
+        <button onClick={logout} style={{ background: 'red' }}>
+          Logout Azure
+        </button>
+      </div>
+      <div>
+        <button onClick={download} style={{ background: 'cyan' }}>
+          Download taxi app for users
+        </button>
+      </div>
       <div>
         <h2>Login</h2>
         <div>

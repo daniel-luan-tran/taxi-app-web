@@ -1,5 +1,5 @@
-import _axios from "axios";
-const { VITE_API_URL } = import.meta.env;
+import _axios from 'axios';
+const { VITE_API_URL, VITE_ANDROID_APK } = import.meta.env;
 
 export const authConfig = {
   withCredentials: true,
@@ -19,6 +19,10 @@ export const checkUser = async () => {
 export const logout = async () => {
   const data = await axios.get(`/api/v1/auth/azureAD/logout`, authConfig);
   window.location.href = data.data.logoutLink;
+};
+
+export const downloadAPK = async () => {
+  window.open(VITE_ANDROID_APK);
 };
 
 export default axios;
