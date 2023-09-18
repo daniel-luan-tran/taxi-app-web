@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios, {
   checkUser,
-  downloadAPK,
+  downloadAPKForUser,
+  downloadAPKForDriver,
   loginAD,
   logout,
 } from '../../api/axios';
@@ -56,8 +57,11 @@ const HomePage = () => {
     console.log(data);
   };
 
-  const download = async () => {
-    await downloadAPK();
+  const downloadForUser = async () => {
+    await downloadAPKForUser();
+  };
+  const downloadForDriver = async () => {
+    await downloadAPKForDriver();
   };
 
   useEffect(() => {
@@ -86,8 +90,11 @@ const HomePage = () => {
         </button>
       </div>
       <div>
-        <button onClick={download} style={{ background: 'cyan' }}>
+        <button onClick={downloadForUser} style={{ background: 'cyan' }}>
           Download taxi app for users
+        </button>
+        <button onClick={downloadForDriver} style={{ background: 'cyan' }}>
+          Download taxi app for drivers
         </button>
       </div>
       <div>
