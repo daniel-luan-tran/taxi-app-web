@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import {
-  checkUser,
+  // checkUser,
   downloadAPKForUser,
   downloadAPKForDriver,
-  loginAD,
-  logout,
+  // loginAD,
+  // logout,
 } from '../../api/axios';
 // import axios from "axios";
 // const API_URL = import.meta.env.VITE_API_URL;
@@ -72,7 +72,7 @@ const HomePage = () => {
   return (
     <>
       <h1>Home Page</h1>
-      <div>
+      {/* <div>
         <button
           onClick={loginAD}
           style={{ background: 'green', marginRight: 10 }}
@@ -88,7 +88,7 @@ const HomePage = () => {
         <button onClick={logout} style={{ background: 'red' }}>
           Logout Azure
         </button>
-      </div>
+      </div> */}
       <div>
         <button onClick={downloadForUser} style={{ background: 'cyan' }}>
           Download taxi app for users
