@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import axios, {
+import { useEffect } from 'react';
+import {
   checkUser,
   downloadAPKForUser,
   downloadAPKForDriver,
@@ -7,7 +7,7 @@ import axios, {
   logout,
 } from '../../api/axios';
 // import axios from "axios";
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
 
 // Get the current URL
 const currentUrl = window.location.href;
@@ -28,34 +28,34 @@ if (userInactive) {
 }
 
 const HomePage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  // const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(e.target.value);
+  // };
 
-  const handleLogin = async () => {
-    // Here you can implement your login logic
-    console.log('Email:', email);
-    console.log('Password:', password);
+  // const handleLogin = async () => {
+  //   // Here you can implement your login logic
+  //   console.log('Email:', email);
+  //   console.log('Password:', password);
 
-    const data = await axios.post(
-      `${API_URL}/api/v1/auth/login`,
-      {
-        email: `staff@blackbook`,
-        password: 'blackbook@1',
-      },
-      {
-        withCredentials: true,
-      },
-    );
-    console.log(data);
-  };
+  //   const data = await axios.post(
+  //     `${API_URL}/api/v1/auth/login`,
+  //     {
+  //       email: `staff@blackbook`,
+  //       password: 'blackbook@1',
+  //     },
+  //     {
+  //       withCredentials: true,
+  //     },
+  //   );
+  //   console.log(data);
+  // };
 
   const downloadForUser = async () => {
     await downloadAPKForUser();
@@ -97,7 +97,7 @@ const HomePage = () => {
           Download taxi app for drivers
         </button>
       </div>
-      <div>
+      {/* <div>
         <h2>Login</h2>
         <div>
           <label>Email:</label>
@@ -112,7 +112,7 @@ const HomePage = () => {
           />
         </div>
         <button onClick={handleLogin}>Login</button>
-      </div>
+      </div> */}
     </>
   );
 };
