@@ -1,7 +1,6 @@
-import axios from // authConfig
-"./axios";
+import axios from './axios'; // authConfig
 
-export const homePage = async () => {
-  const response = await axios.get("/");
+export const spinUpWebService = async () => {
+  const response = await axios.get('/spin-up');
   return response.data;
 };

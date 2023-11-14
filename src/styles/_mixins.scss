@@ -1,0 +1,102 @@
+@import "variables";
+
+/* Breakpoints */
+@mixin lg-screen {
+  @media only screen {
+    @content;
+  }
+}
+@mixin md-screen {
+  @media only screen and (max-width: 1000px) {
+    @content;
+  }
+}
+@mixin sm-screen {
+  @media only screen and (max-width: 740px) {
+    @content;
+  }
+}
+@mixin xs-screen {
+  @media only screen and (max-width: 460px) {
+    @content;
+  }
+}
+
+/* Layout */
+@mixin container {
+  width: calc(100% - #{$container-horizontal-padding} * 2);
+  max-width: $container-width-max;
+  margin: 0 auto;
+  flex-direction: column;
+  display: flex;
+}
+
+@mixin row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: $margin-top-medium;
+  @include sm-screen {
+    @include row-wrap;
+  }
+  
+  > * {
+    flex: 1;
+    flex-grow: 1;
+    > * {
+      margin: 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: $margin-between;
+      @include sm-screen {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@mixin row-disallow-wrapping {
+  display: flex;
+  > * {
+    margin-top: 0px;
+    
+  }
+  > *:not(:last-child) {
+    margin-right: $margin-between;
+  }
+}
+
+@mixin row-wrap {
+  display: block;
+
+  > *:not(:first-child) {
+    margin-top: $margin-top-small;
+  }
+}
+
+/* Inputs */
+@mixin input-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: $margin-top-medium !important;
+}
+
+@mixin input {
+  margin-top: $margin-top-small;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $grey-mid;
+  background-color: $white;
+  padding: $padding-input;
+  font-size: $font-size-default;
+  &:hover {
+    border-color: $cyan;
+  }
+}
+ 
+@mixin input-rounded {
+  border-radius: 20px;
+}

@@ -1,4 +1,5 @@
 import _axios from 'axios';
+import { Account } from '../types';
 const { VITE_API_URL, VITE_ANDROID_APK_FOR_USER, VITE_ANDROID_APK_FOR_DRIVER } =
   import.meta.env;
 
@@ -12,9 +13,10 @@ export const loginAD = async () => {
   window.location.href = `${VITE_API_URL}/api/v1/auth/azureAD/login-for-drivers`;
 };
 
-export const checkUser = async () => {
+export const checkUser = async (): Promise<Account> => {
   const data = await axios.get(`/api/v1/auth/azureAD/check`, authConfig);
   console.log(data);
+  return data.data;
 };
 
 export const logout = async () => {

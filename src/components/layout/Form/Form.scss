@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.form {
+  max-width: $form-width-max;
+
+  // Links inside form
+  a {
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}

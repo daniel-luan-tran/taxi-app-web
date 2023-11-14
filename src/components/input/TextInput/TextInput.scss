@@ -1,0 +1,41 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.textinput {
+  @include input-wrap;
+  flex: 1;
+
+  &--no-margin {
+    margin: 0px !important;
+  }
+
+  .textinput__input-wrap {
+    position: relative;
+
+    .textinput__input {
+        @include input;
+  
+        &--rounded {
+          @include input-rounded;
+        }
+
+        &--no-margin {
+          margin: 0px !important;
+        }
+    }
+  
+    .icon {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+    }
+  }
+
+  &--has-icon {
+    .textinput__input-wrap {  
+      .textinput__input {
+        padding-left: 40px;
+      }
+    }
+  }
+}

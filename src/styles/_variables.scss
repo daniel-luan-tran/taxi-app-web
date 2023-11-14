@@ -1,0 +1,51 @@
+/* Colours */
+$cyan: #00AEEF;
+$blue-light: #c0e4f1;
+$magenta: #C92A7A;
+$yellow: #F8E12F;
+$black: #111111;
+$white: #ffffff;
+$red: #B30000;
+$grey-light: #F2F2F2;
+$grey-mid: #808080;
+$grey-dark: #525252;
+$transparent: transparent;
+
+/* Typography */
+$font-size-default: 14px;
+$font-size-h1: 22px;
+$font-size-h2: 27px;
+$font-size-h3: 20px;
+$font-size-h4: 18px;
+$font-size-small: 12px;
+$font-size-menu: $font-size-default;
+$font-size-p: $font-size-default;
+$font-size-label: $font-size-default;
+
+/* Borders */
+$border-radius-small: 0px;
+$border-radius-large: 10px;
+$border-width-thin: 1px;
+$border-width-thick: 5px;
+
+/* Layout */
+$container-width-max: 1300px;
+$form-width-max: 600px;
+$container-horizontal-padding: 20px;
+$page-vertical-padding: 40px;
+
+/* Spacing */
+$margin-top-small: 10px;
+$margin-top-medium: 20px;
+$margin-top-large: 30px;
+$margin-between: 20px;
+$padding-input: 10px;
+$padding-component-small: 10px;
+$padding-component-medium: 20px;
+$padding-component-large: 40px;
+
+/* Header */
+$menu-vertical-height: 70px;
+
+/* Footer */
+$footer-vertical-height: 70px;

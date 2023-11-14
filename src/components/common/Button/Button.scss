@@ -1,0 +1,120 @@
+@import "../../../styles/variables";
+
+@mixin disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.button {
+  border-radius: $border-radius-small;
+  margin-top: $margin-top-medium;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+  border: 3px solid $black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  .icon {
+    margin-right: 4px;
+    margin-left: -4px;
+  }
+  
+  &--active {
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  // Loading
+
+  .spinner {
+    display: none;
+  }
+
+  &--loading {
+    @include disabled;
+    .spinner {
+      display: flex;
+      margin-right: 8px;
+    }
+  }
+
+  // Sizes
+
+  &--small {
+    font-size: 12px;
+    padding: 8px 10px;
+    max-height: 32px;
+  }
+
+  &--medium {
+    font-size: 13px;
+    padding: 14px 16px;
+    max-height: 45px;
+  }
+
+  &--large {
+    font-size: 15px;
+    padding: 16px 18px;
+    max-height: 57px;
+    border-radius: 29px;
+  }
+
+  // Types
+
+  &--primary {
+    color: $white;
+    background-color: $black;
+    border-color: $black;
+  }
+
+  &--secondary {
+    color: $white;
+    background-color: $grey-dark;
+    border-color: $grey-dark;
+  }
+
+  &--danger {
+    color: $white;
+    background-color: $red;
+    border-color: $red;
+  }
+
+  &--transparent {
+    color: $black;
+    border: none;
+    background-color: $transparent;
+  }
+  
+  &--outlined {
+    color: $black;
+    background-color: $white;
+    border-color: $black;
+  }
+
+  &--disabled {
+    @include disabled; 
+  } 
+
+  // Fullwidth
+
+  &--fullwidth {
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  // Rounded
+
+  &--rounded {
+    border-radius: 30px;
+  }
+
+  // Margin auto
+  &--margin-auto {
+    margin: auto !important;
+  }
+}

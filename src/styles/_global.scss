@@ -1,0 +1,44 @@
+@import "./variables";
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Override defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition: 0.5s;
+  font-family: "Montserrat", "Verdana", sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+
+}
+
+/* Minimum height is height of window */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  transition: 0s !important;
+  background-color: $grey-light;
+}
+
+/* Typography */
+* { font-size: $font-size-p; }
+h1 { font-size: $font-size-h1; }
+small {  font-size: $font-size-small; }
+
+/* Inputs */
+fieldset {
+  border: none;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+}
