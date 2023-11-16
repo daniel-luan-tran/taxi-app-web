@@ -1,29 +1,53 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import NoPage from './pages/NoPage';
 import HomePage from './pages/HomePage/HomePage';
 import { Header } from './components/layout';
+import LoginForm from './components/forms/login-form/LoginForm';
+import { AccountDropdown } from './components/dropdowns';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { BookingHistoryList } from './components/booking-history-list/BookingHistoryList';
+import RequireAuth from './RequireAuth';
 
 const publicMenu: Menu = [
   { label: 'Home page', path: '/' },
+  { label: 'Login', path: '/login' },
   { label: 'Booking history', path: '/booking-history' },
 ];
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
-      <HashRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<Header menu={publicMenu} collapseWidth={720} />}
-          >
-            <Route index element={<HomePage />} />
-            <Route path="/booking-history" element={<HomePage />} />
-            <Route path="*" element={<NoPage />} />
-          </Route>
-        </Routes>
-      </HashRouter>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Header menu={publicMenu} collapseWidth={720}>
+                  <AccountDropdown />
+                </Header>
+              }
+            >
+              <Route index element={<HomePage />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route
+                path="/booking-history"
+                element={
+                  <RequireAuth secured={true} redirectTo={'/login'}>
+                    <BookingHistoryList />
+                  </RequireAuth>
+                }
+              />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          </Routes>
+        </QueryClientProvider>
+      </BrowserRouter>
     </>
   );
 }

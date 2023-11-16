@@ -1,8 +1,8 @@
-import ReactDropdown from "react-dropdown";
-import { Spinner } from "../../common";
-import InputError from "../InputError/InputError";
-import InputLabel from "../InputLabel/InputLabel";
-import "./DropdownInput.scss";
+import ReactDropdown from 'react-dropdown';
+import { Spinner } from '../../common';
+import InputError from '../InputError/InputError';
+import InputLabel from '../InputLabel/InputLabel';
+import './DropdownInput.scss';
 
 interface DropdownInputProps
   extends InputWithOptionsProps,
@@ -30,10 +30,10 @@ function DropdownInput({
   touched,
   isFetching,
   asInput = false,
-  dropDownName = "",
+  dropDownName = '',
 }: DropdownInputProps) {
   const asInputClass = `dropdowninput--${
-    asInput ? "as-input" : "not-as-input"
+    asInput ? 'as-input' : 'not-as-input'
   }`;
   return (
     <div className={`${dropDownName} dropdowninput ${asInputClass}`}>
@@ -42,8 +42,8 @@ function DropdownInput({
         <ReactDropdown
           className="reactdropdown"
           options={options}
-          value={options.length ? value : ""}
-          placeholder={placeholder ?? ""}
+          value={options.length ? value : ''}
+          placeholder={placeholder ?? ''}
           onChange={(e) => (e.value !== value ? onChange(e.value) : null)}
           disabled={disabled}
         />

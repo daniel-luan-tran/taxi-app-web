@@ -1,11 +1,11 @@
-@import "../../styles/variables";
+@import '../../../styles/variables';
 
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: black;
+  // justify-content: center;
+  // background-color: black;
   height: 100%;
 
   .form {
@@ -15,7 +15,7 @@
       border-width: 0 0 2px 0;
       width: 100%;
       h1 {
-        color: $white
+        color: $white;
       }
     }
 
@@ -24,13 +24,13 @@
 
       .inputlabel {
         .inputlabel__label {
-          color: $white
+          color: $black;
         }
       }
 
       .textinput__input-wrap {
         .textinput__input {
-          background-color: $black;
+          background-color: $grey-dark;
           border-width: 0 0 2px 0;
           border-color: $grey-mid;
           color: $white;
@@ -50,16 +50,15 @@
       &:hover {
         background-color: $cyan;
       }
-
     }
-    
-    .checkbox{
+
+    .checkbox {
       .checkbox__input-wrap {
         .checkmark {
           background-color: $white;
         }
-        .checkbox__label{
-          color: $white;
+        .checkbox__label {
+          color: $black;
         }
       }
     }
@@ -69,11 +68,11 @@
     }
   }
 
-  .logo-wrapper{
+  .logo-wrapper {
     height: 50px;
-    img { 
-      height: 100%; 
-      width: auto 
+    img {
+      height: 100%;
+      width: auto;
     }
   }
 }

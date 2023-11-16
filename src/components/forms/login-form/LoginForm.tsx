@@ -3,26 +3,27 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginLocal } from '../../../api/auth';
 import { Button, Title } from '../../common';
-import { CheckboxInput, TextInput } from '../../../components/input';
+import { TextInput } from '../../../components/input';
 import { Form } from '../../layout';
 import './LoginForm.scss';
+import { useQueryClient } from 'react-query'; // Import queryCache
 
 interface LoginFormValues {
   email: string;
   password: string;
-  remember: string;
+  // remember: string;
 }
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-
+  const queryCache = useQueryClient();
   const navigate = useNavigate();
 
   const initialValues: LoginFormValues = {
-    email: '',
-    password: '',
-    remember: '',
+    email: 'staff@dalutech',
+    password: '123456a!',
+    // remember: '',
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -55,7 +56,11 @@ const LoginForm = () => {
     onSubmit: ({ email, password }) => {
       setIsSubmitting(true);
       loginLocal({ email, password })
-        .then(() => navigate('/'))
+        .then((userData) => {
+          console.log('User data:', userData);
+          queryCache.setQueriesData(['checkUser'], userData);
+          navigate('/');
+        })
         .catch(() => setError('Incorrect password'))
         .finally(() => setIsSubmitting(false));
     },
@@ -64,13 +69,13 @@ const LoginForm = () => {
 
   return (
     <div className="login-form">
-      <div className="logo-wrapper">
-        <img src="/isports.png" />
-      </div>
+      {/* <div className="logo-wrapper">
+        <img src="/src/assets/react.svg" />
+      </div> */}
       <Form onSubmit={formik.submitForm} fullWidth>
         <Title>User Login</Title>
         <TextInput
-          label="Email"
+          label="Account"
           value={formik.values.email}
           onChange={formik.handleChange('email')}
           touched={formik.touched.email}
@@ -94,11 +99,11 @@ const LoginForm = () => {
           fullwidth
           isSubmit
         />
-        <CheckboxInput
+        {/* <CheckboxInput
           checkboxLabel="Remember me"
           onChange={formik.handleChange('remember')}
           value={formik.values.remember}
-        />
+        /> */}
         {error && <p className="error-text">{error}</p>}
       </Form>
     </div>

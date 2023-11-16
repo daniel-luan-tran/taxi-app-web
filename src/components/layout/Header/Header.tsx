@@ -21,7 +21,6 @@ const Header = ({ menu, children, collapseWidth = 630 }: HeaderProps) => {
   } = useComponentDimensions();
 
   const { pathname } = location;
-
   const isCurrentRoute = (routeToCheck: string) => {
     const adminPathname = `${pathname}`;
     if (pathname === routeToCheck && routeToCheck === '/') return true;

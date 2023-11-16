@@ -5,8 +5,9 @@ import { _ReactIcon } from '../components/common/Icon/Icon';
 // } from 'react-native-google-places-autocomplete';
 import { BOOKINGSTATUS } from './enum';
 
-export type ReactIcon = _ReactIcon;
-
+declare global {
+  export type ReactIcon = _ReactIcon;
+}
 // export type GoogleData = {
 //   data: GooglePlaceData;
 //   details?: GooglePlaceDetail;
@@ -55,9 +56,11 @@ export type Account = {
   azureOid: string;
   phoneNumber: string;
   address: string;
-  displayName: string;
-  driverTypeId: number | null;
-  Driver: Driver | null;
+  displayName?: string;
+  driverTypeId?: number;
+  Driver?: Driver;
+  User?: User;
+  Staff?: Staff;
 };
 
 export type Driver = {
@@ -65,13 +68,16 @@ export type Driver = {
   account: Account;
   driverTypeId: number;
   driverType: DriverType;
-  // currentPlace?: Coordinates;
 };
 
 export type User = {
   accountId: string;
   account: Account;
-  // currentPlace?: Coordinates;
+};
+
+export type Staff = {
+  accountId: string;
+  account: Account;
 };
 
 export type PassengerRoute = {
