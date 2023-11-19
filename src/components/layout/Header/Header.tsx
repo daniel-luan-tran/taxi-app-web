@@ -60,7 +60,7 @@ const Header = ({ menu, children, collapseWidth = 630 }: HeaderProps) => {
       <div className="header">
         <div className="header__container" ref={containerRef}>
           <div className="header__logo" onClick={() => navigate('/')}>
-            <img src="/public/assets/react.svg" />
+            <img src="src/assets/react.svg" />
           </div>
           {containerWidth > collapseWidth
             ? renderDesktopNav()
