@@ -1,9 +1,5 @@
 import { InputError, InputLabel } from '../../input';
-import DatePicker, {
-  ReactDatePickerProps,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  registerLocale,
-} from 'react-datepicker';
+import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import './DateInput.scss';
 import { Icon } from '../../common';
 // import dayjs from "dayjs";

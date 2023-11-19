@@ -30,30 +30,6 @@ const LoginForm = () => {
     // remember: '',
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const validate = (values: LoginFormValues) => {
-    const errors: { [key: string]: string } = {};
-    if (!values.email) {
-      errors.email = 'Required';
-    }
-    if (!values.password) {
-      errors.password = 'Required';
-    } else {
-      // 🎯 Minimum 8 characters
-      // 🎯 Should contain 1 or more numbers
-      // 🎯 Should contain 1 or more symbols
-      // 🎯 Should contain 1 or more letters
-      const r = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
-
-      if (!r.test(values.password)) {
-        errors.password =
-          'Password must be at least 8 characters, contains only letters, numbers and symbols';
-      }
-    }
-
-    return errors;
-  };
-
   const formik = useFormik({
     // Test credentials for development (from db seeding)
     initialValues,

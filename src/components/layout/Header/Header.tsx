@@ -13,12 +13,7 @@ interface HeaderProps {
 const Header = ({ menu, children, collapseWidth = 630 }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    ref: containerRef,
-    width: containerWidth,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    height: containerHeight,
-  } = useComponentDimensions();
+  const { ref: containerRef, width: containerWidth } = useComponentDimensions();
 
   const { pathname } = location;
   const isCurrentRoute = (routeToCheck: string) => {
