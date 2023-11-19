@@ -11,35 +11,43 @@
   },
   "dependencies": {
     "@azure/msal-browser": "^2.38.0",
+    "@react-google-maps/api": "^2.19.2",
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-table": "^8.10.7",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "formik": "^2.4.5",
+    "google-map-react": "^2.2.1",
+    "luxon": "^3.2.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
+    "react-google-autocomplete": "^2.7.3",
+    "react-google-places-autocomplete": "^4.0.1",
     "react-icons": "^4.7.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.14.2",
-    "react-select": "^5.8.0",
-    "luxon": "^3.2.1"
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
+    "@types/google-map-react": "^2.1.10",
+    "@types/googlemaps": "^3.43.3",
+    "@types/luxon": "^3.2.0",
     "@types/react": "^18.2.15",
     "@types/react-datepicker": "^4.19.3",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "add": "^2.0.6",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "sass": "^1.69.5",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "@types/luxon": "^3.2.0"
+    "yarn": "^1.22.21"
   },
   "engines": {
     "node": ">=18.16.0"

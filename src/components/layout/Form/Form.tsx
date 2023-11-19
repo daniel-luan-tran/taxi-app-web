@@ -11,13 +11,14 @@ type FormProps = {
    */
   onSubmit: () => void;
   fullWidth?: boolean;
+  customStyles?: object;
 };
 
 /**
  * A component to wrap the form html element for consistant
  * styling across the web app.
  */
-const Form = ({ children, fullWidth, onSubmit }: FormProps) => {
+const Form = ({ children, fullWidth, onSubmit, customStyles }: FormProps) => {
   return (
     <form
       className={classNames({
@@ -28,6 +29,7 @@ const Form = ({ children, fullWidth, onSubmit }: FormProps) => {
         e.preventDefault();
         onSubmit();
       }}
+      style={customStyles}
     >
       {children}
     </form>

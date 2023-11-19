@@ -7,6 +7,8 @@ import { TextInput } from '../../../components/input';
 import { Form } from '../../layout';
 import './LoginForm.scss';
 import { useQueryClient } from 'react-query'; // Import queryCache
+import { useCheckAuth } from '../../../hooks';
+import AccountForm from '../account-form/AccountForm';
 
 interface LoginFormValues {
   email: string;
@@ -19,6 +21,8 @@ const LoginForm = () => {
   const [error, setError] = useState('');
   const queryCache = useQueryClient();
   const navigate = useNavigate();
+
+  const { isAuthed } = useCheckAuth();
 
   const initialValues: LoginFormValues = {
     email: 'staff@dalutech',
@@ -67,11 +71,10 @@ const LoginForm = () => {
     // validate,
   });
 
+  if (isAuthed) return <AccountForm />;
+
   return (
     <div className="login-form">
-      {/* <div className="logo-wrapper">
-        <img src="/src/assets/react.svg" />
-      </div> */}
       <Form onSubmit={formik.submitForm} fullWidth>
         <Title>User Login</Title>
         <TextInput
@@ -100,10 +103,10 @@ const LoginForm = () => {
           isSubmit
         />
         {/* <CheckboxInput
-          checkboxLabel="Remember me"
-          onChange={formik.handleChange('remember')}
-          value={formik.values.remember}
-        /> */}
+            checkboxLabel="Remember me"
+            onChange={formik.handleChange('remember')}
+            value={formik.values.remember}
+          /> */}
         {error && <p className="error-text">{error}</p>}
       </Form>
     </div>

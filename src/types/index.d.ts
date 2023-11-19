@@ -3,7 +3,7 @@ import { _ReactIcon } from '../components/common/Icon/Icon';
 //   GooglePlaceData,
 //   GooglePlaceDetail,
 // } from 'react-native-google-places-autocomplete';
-import { BOOKINGSTATUS } from './enum';
+import { BOOKINGSTATUS, BOOKINGTYPE } from './enum';
 
 declare global {
   export type ReactIcon = _ReactIcon;
@@ -26,11 +26,14 @@ export type DriverType = {
 export type BookingHistoryUpdate = {
   userId: string;
   driverId: string;
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
+  driverTypeId: string;
+  startLat: string;
+  startLng: string;
+  endLat: string;
+  endLng: string;
   status: BOOKINGSTATUS;
+  viewMapOnly: boolean;
+  bookingType: BOOKINGTYPE;
 };
 
 export type BookingHistory = {
@@ -45,6 +48,7 @@ export type BookingHistory = {
   endLat: number;
   endLng: number;
   status: BOOKINGSTATUS;
+  bookingType: BOOKINGTYPE;
 };
 
 export type Account = {
@@ -52,7 +56,7 @@ export type Account = {
   email: string;
   firstName: string;
   lastName: string;
-  active: boolean;
+  active?: boolean;
   azureOid: string;
   phoneNumber: string;
   address: string;

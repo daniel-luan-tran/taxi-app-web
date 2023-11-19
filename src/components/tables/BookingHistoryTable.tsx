@@ -12,9 +12,20 @@ import {
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { BookingHistory } from '../../types';
+import { Row } from '../layout';
+import { MapViewModal } from '../modals';
+
+interface BookingHistoryMap extends BookingHistory {
+  number: number;
+}
+
+interface CoordinateProps {
+  lat: number;
+  lng: number;
+}
 
 interface BookingHistoryTableProps {
-  data: BookingHistory[];
+  data: BookingHistoryMap[];
   isLoading?: boolean;
 }
 
@@ -22,11 +33,22 @@ export const BookingHistoryTable = ({
   data,
   isLoading,
 }: BookingHistoryTableProps) => {
+  const [isMapViewModal, setIsMapViewModal] = useState<boolean>(false);
+  const [origin, setOrigin] = useState<CoordinateProps>();
+  const [destination, setDestination] = useState<CoordinateProps>();
   const navigate = useNavigate();
 
   // Setup columns
-  const columns = useMemo<ColumnDef<BookingHistory>[]>(
+  const columns = useMemo<ColumnDef<BookingHistoryMap>[]>(
     () => [
+      {
+        header: 'No.',
+        footer: (props) => props.column.id,
+        cell: (info) => <p>{info.getValue() as string}</p>,
+        sortingFn: 'alphanumeric',
+        accessorFn: (row) => row.number,
+        enableSorting: true,
+      },
       {
         header: 'Passenger Name',
         footer: (props) => props.column.id,
@@ -75,18 +97,58 @@ export const BookingHistoryTable = ({
         enableSorting: true,
       },
       {
+        header: 'Booking Type',
+        footer: (props) => props.column.id,
+        cell: (info) => <p>{info.getValue() as string}</p>,
+        sortingFn: 'alphanumeric',
+        accessorFn: (row) => row.bookingType.split('_').join(' '),
+        enableSorting: true,
+      },
+      {
+        header: 'Status',
+        footer: (props) => props.column.id,
+        cell: (info) => <p>{info.getValue() as string}</p>,
+        sortingFn: 'alphanumeric',
+        accessorFn: (row) => row.status.split('_').join(' '),
+        enableSorting: true,
+      },
+      {
         header: 'Action',
         footer: (props) => props.column.id,
         cell: (info) => (
-          <Button
-            label="Edit"
-            type="secondary"
-            icon="IoPencilOutline"
-            size="small"
-            onClick={() =>
-              navigate(`/booking-history/edit?id=${info.getValue()}`)
-            }
-          />
+          <Row
+            alignItems="center"
+            justifyContent="center"
+            noFlex
+            disableWrapping
+          >
+            <Button
+              label="Edit"
+              type="secondary"
+              icon="IoPencilOutline"
+              size="small"
+              onClick={() =>
+                navigate(`/booking-history/edit?id=${info.getValue()}`)
+              }
+            />
+            <Button
+              label="Map view"
+              type="secondary"
+              icon="IoMapSharp"
+              size="small"
+              onClick={() => {
+                setOrigin({
+                  lat: info.row.original.startLat,
+                  lng: info.row.original.startLng,
+                });
+                setDestination({
+                  lat: info.row.original.endLat,
+                  lng: info.row.original.endLng,
+                });
+                setIsMapViewModal(true);
+              }}
+            />
+          </Row>
         ),
         sortingFn: 'text',
         accessorFn: (row) => row.id,
@@ -112,42 +174,53 @@ export const BookingHistoryTable = ({
   if (isLoading) return <Spinner size="large" />;
 
   // If no data
-  if (!isLoading && !data.length) return <p>No leagues found</p>;
+  if (!isLoading && !data.length) return <p>No booking history found</p>;
 
   return (
-    <Table>
-      <Thead>
-        <Tr>
-          {table.getFlatHeaders().map((header) => {
-            const onClickIfSortable = header.column.getCanSort()
-              ? header.column.getToggleSortingHandler()
-              : undefined;
-            return header.isPlaceholder ? null : (
-              <Th
-                key={header.id}
-                onClick={onClickIfSortable}
-                sorted={header.column.getIsSorted()}
-              >
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext(),
-                )}
-              </Th>
-            );
-          })}
-        </Tr>
-      </Thead>
-      <Tbody>
-        {table.getRowModel().rows.map((row) => (
-          <Tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <Td key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </Td>
-            ))}
+    <>
+      <Table>
+        <Thead>
+          <Tr>
+            {table.getFlatHeaders().map((header) => {
+              const onClickIfSortable = header.column.getCanSort()
+                ? header.column.getToggleSortingHandler()
+                : undefined;
+              return header.isPlaceholder ? null : (
+                <Th
+                  key={header.id}
+                  onClick={onClickIfSortable}
+                  sorted={header.column.getIsSorted()}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </Th>
+              );
+            })}
           </Tr>
-        ))}
-      </Tbody>
-    </Table>
+        </Thead>
+        <Tbody>
+          {table.getRowModel().rows.map((row) => (
+            <Tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <Td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </Td>
+              ))}
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      {origin && destination && (
+        <MapViewModal
+          isOpen={isMapViewModal}
+          onClose={() => setIsMapViewModal(false)}
+          statment="Map View"
+          origin={origin}
+          destination={destination}
+        />
+      )}
+    </>
   );
 };

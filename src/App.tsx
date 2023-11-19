@@ -9,11 +9,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BookingHistoryList } from './components/booking-history-list/BookingHistoryList';
 import RequireAuth from './RequireAuth';
+import BookingHistoryEdit from './pages/BookingHistoryEdit/BookingHistoryEdit';
+import BookingHistoryCreate from './pages/BookingHistoryCreate/BookingHistoryCreate';
 
 const publicMenu: Menu = [
   { label: 'Home page', path: '/' },
-  { label: 'Login', path: '/login' },
   { label: 'Booking history', path: '/booking-history' },
+  { label: 'Account', path: '/login' },
 ];
 
 function App() {
@@ -40,6 +42,22 @@ function App() {
                 element={
                   <RequireAuth secured={true} redirectTo={'/login'}>
                     <BookingHistoryList />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/booking-history/edit"
+                element={
+                  <RequireAuth secured={true} redirectTo={'/login'}>
+                    <BookingHistoryEdit />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/booking-history/new"
+                element={
+                  <RequireAuth secured={true} redirectTo={'/login'}>
+                    <BookingHistoryCreate />
                   </RequireAuth>
                 }
               />

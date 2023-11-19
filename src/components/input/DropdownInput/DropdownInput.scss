@@ -1,6 +1,6 @@
-@import "react-dropdown/style.css";
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@import 'react-dropdown/style.css';
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .dropdowninput {
   min-width: 80px;
@@ -17,13 +17,12 @@
 
     &-menu {
       z-index: 2;
-      width: fit-content;
+      // width: fit-content;
     }
 
     &-placeholder {
       white-space: nowrap;
     }
-
   }
 
   &--as-input {
@@ -45,7 +44,7 @@
       }
     }
 
-    .create-select{
+    .create-select {
       @include input;
       padding: 0;
       & div {
