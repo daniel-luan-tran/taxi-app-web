@@ -5,6 +5,13 @@ const { VITE_API_URL, VITE_ANDROID_APK_FOR_USER, VITE_ANDROID_APK_FOR_DRIVER } =
 
 export const authConfig = {
   withCredentials: true,
+  headers: {
+    'Access-Control-Allow-Origin':
+      'https://main--subtle-moxie-1bd831.netlify.app',
+    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, PUT, DELETE',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Credentials': 'true',
+  },
 };
 
 const axios = _axios.create({ baseURL: VITE_API_URL });
