@@ -6,6 +6,8 @@ import {
   // loginAD,
   // logout,
 } from '../../api/axios';
+import { Button } from '../../components/common';
+import { Page } from '../../components/layout';
 // import axios from "axios";
 // const API_URL = import.meta.env.VITE_API_URL;
 
@@ -70,50 +72,60 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <Page customStyles={{ padding: 20 }} title="homepage">
       <h1>Home Page</h1>
-      {/* <div>
-        <button
-          onClick={loginAD}
-          style={{ background: 'green', marginRight: 10 }}
-        >
-          Login Azure
-        </button>
-        <button
-          onClick={checkUser}
-          style={{ background: 'green', marginRight: 10 }}
-        >
-          Check
-        </button>
-        <button onClick={logout} style={{ background: 'red' }}>
-          Logout Azure
-        </button>
-      </div> */}
       <div>
-        <button onClick={downloadForUser} style={{ background: 'cyan' }}>
-          Download taxi app for users
-        </button>
-        <button onClick={downloadForDriver} style={{ background: 'cyan' }}>
-          Download taxi app for drivers
-        </button>
+        <Button
+          label="Download taxi app for users"
+          onClick={downloadForUser}
+          fullwidth
+        />
+        <Button
+          label="Download taxi app for drivers"
+          onClick={downloadForDriver}
+          fullwidth
+        />
+        <div>
+          <h3
+            style={{
+              marginBottom: 0,
+              color: 'blue',
+              textDecoration: 'underline',
+            }}
+          >
+            System Architecture
+          </h3>
+          <img src="/assets/Booking app architecture.png" width="100%"></img>
+        </div>
+        <hr />
+        <div>
+          <h3
+            style={{
+              color: 'blue',
+              textDecoration: 'underline',
+            }}
+          >
+            Schema Diagram
+          </h3>
+          <img
+            style={{ marginLeft: 'auto', marginRight: 'auto' }}
+            src="/assets/schema_diagram.pgerd.png"
+            width="100%"
+          ></img>
+        </div>
+        <div>
+          <h3
+            style={{
+              color: 'blue',
+              textDecoration: 'underline',
+            }}
+          >
+            Taxi booking via mobile app
+          </h3>
+          <img src="/assets/Socket.svg" width="100%"></img>
+        </div>
       </div>
-      {/* <div>
-        <h2>Login</h2>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <button onClick={handleLogin}>Login</button>
-      </div> */}
-    </>
+    </Page>
   );
 };
 

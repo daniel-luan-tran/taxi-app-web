@@ -2,13 +2,14 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginLocal } from '../../../api/auth';
-import { Button, Title } from '../../common';
+import { Button } from '../../common';
 import { TextInput } from '../../../components/input';
 import { Form } from '../../layout';
 import './LoginForm.scss';
 import { useQueryClient } from 'react-query'; // Import queryCache
 import { useCheckAuth } from '../../../hooks';
 import AccountForm from '../account-form/AccountForm';
+import { loginAD } from '../../../api/axios';
 
 interface LoginFormValues {
   email: string;
@@ -52,7 +53,6 @@ const LoginForm = () => {
   return (
     <div className="login-form">
       <Form onSubmit={formik.submitForm} fullWidth>
-        <Title>User Login</Title>
         <TextInput
           label="Account"
           value={formik.values.email}
@@ -77,6 +77,15 @@ const LoginForm = () => {
           isLoading={isSubmitting}
           fullwidth
           isSubmit
+        />
+        <Button
+          label="Login Azure"
+          isLoading={isSubmitting}
+          fullwidth
+          onClick={(e) => {
+            e?.preventDefault();
+            loginAD();
+          }}
         />
         {/* <CheckboxInput
             checkboxLabel="Remember me"

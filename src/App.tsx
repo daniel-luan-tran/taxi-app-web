@@ -3,7 +3,6 @@ import './App.css';
 import NoPage from './pages/NoPage';
 import HomePage from './pages/HomePage/HomePage';
 import { Header } from './components/layout';
-import LoginForm from './components/forms/login-form/LoginForm';
 import { AccountDropdown } from './components/dropdowns';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -11,6 +10,7 @@ import { BookingHistoryList } from './components/booking-history-list/BookingHis
 import RequireAuth from './RequireAuth';
 import BookingHistoryEdit from './pages/BookingHistoryEdit/BookingHistoryEdit';
 import BookingHistoryCreate from './pages/BookingHistoryCreate/BookingHistoryCreate';
+import Authentication from './pages/Authentication/Authentication';
 
 const publicMenu: Menu = [
   { label: 'Home page', path: '/' },
@@ -36,7 +36,7 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
-              <Route path="/login" element={<LoginForm />} />
+              <Route path="/login" element={<Authentication />} />
               <Route
                 path="/booking-history"
                 element={

@@ -11,7 +11,7 @@ type ButtonProps = {
   /**
    * The function to be called when the button is pressed.
    */
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   /**
    * To block further action and indicate an action is processing.
    */

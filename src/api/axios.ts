@@ -10,17 +10,17 @@ export const authConfig = {
 const axios = _axios.create({ baseURL: VITE_API_URL });
 
 export const loginAD = async () => {
-  window.location.href = `${VITE_API_URL}/api/v1/auth/azureAD/login-for-drivers`;
+  window.location.href = `${VITE_API_URL}/v1/auth/azureAD/login-for-staffs`;
 };
 
 export const checkUser = async (): Promise<Account> => {
-  const data = await axios.get(`/api/v1/auth/azureAD/check`, authConfig);
+  const data = await axios.get(`/v1/auth/azureAD/check`, authConfig);
   console.log(data);
   return data.data;
 };
 
 export const logout = async () => {
-  const data = await axios.get(`/api/v1/auth/azureAD/logout`, authConfig);
+  const data = await axios.get(`/v1/auth/azureAD/logout`, authConfig);
   window.location.href = data.data.logoutLink;
 };
 
