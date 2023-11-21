@@ -114,6 +114,7 @@ const HomePage = () => {
             width="100%"
           ></img>
         </div>
+        <hr />
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <div style={{ flex: 2 }}>
             <h3
