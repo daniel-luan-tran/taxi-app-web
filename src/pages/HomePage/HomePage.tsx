@@ -30,35 +30,6 @@ if (userInactive) {
 }
 
 const HomePage = () => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setEmail(e.target.value);
-  // };
-
-  // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPassword(e.target.value);
-  // };
-
-  // const handleLogin = async () => {
-  //   // Here you can implement your login logic
-  //   console.log('Email:', email);
-  //   console.log('Password:', password);
-
-  //   const data = await axios.post(
-  //     `${API_URL}/api/v1/auth/login`,
-  //     {
-  //       email: `staff@blackbook`,
-  //       password: 'blackbook@1',
-  //     },
-  //     {
-  //       withCredentials: true,
-  //     },
-  //   );
-  //   console.log(data);
-  // };
-
   const downloadForUser = async () => {
     await downloadAPKForUser();
   };
