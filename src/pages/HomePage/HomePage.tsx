@@ -102,6 +102,19 @@ const HomePage = () => {
         <div>
           <h3
             style={{
+              marginBottom: 20,
+              color: 'blue',
+              textDecoration: 'underline',
+            }}
+          >
+            Authentication with Local strategy and OIDC strategy
+          </h3>
+          <img src="/assets/Microsoft Entry ID.svg" width="100%"></img>
+        </div>
+        <hr />
+        <div>
+          <h3
+            style={{
               color: 'blue',
               textDecoration: 'underline',
             }}
