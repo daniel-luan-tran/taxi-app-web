@@ -85,6 +85,7 @@ const HomePage = () => {
           onClick={downloadForDriver}
           fullwidth
         />
+        <hr />
         <div>
           <h3
             style={{
@@ -113,16 +114,44 @@ const HomePage = () => {
             width="100%"
           ></img>
         </div>
-        <div>
-          <h3
-            style={{
-              color: 'blue',
-              textDecoration: 'underline',
-            }}
-          >
-            Taxi booking via mobile app
-          </h3>
-          <img src="/assets/Socket.svg" width="100%"></img>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ flex: 2 }}>
+            <h3
+              style={{
+                color: 'blue',
+                textDecoration: 'underline',
+              }}
+            >
+              Taxi booking via mobile app
+            </h3>
+            <img src="/assets/Socket.svg" width="100%"></img>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 0.87 }}>
+            <div>
+              <h3
+                style={{
+                  marginBottom: 25,
+                  color: 'blue',
+                  textDecoration: 'underline',
+                }}
+              >
+                Mobile app
+              </h3>
+              <img src="/assets/driver-app.png" width="100%"></img>
+            </div>
+            <div>
+              <h3
+                style={{
+                  marginBottom: 0,
+                  color: 'blue',
+                  textDecoration: 'underline',
+                }}
+              >
+                Mobile app
+              </h3>
+              <img src="/assets/passenger-app.png" width="100%"></img>
+            </div>
+          </div>
         </div>
       </div>
     </Page>
