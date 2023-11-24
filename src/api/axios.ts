@@ -1,6 +1,7 @@
 import _axios from 'axios';
 import { Account } from '../types';
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL, VITE_ANDROID_APK_FOR_DRIVER, VITE_ANDROID_APK_FOR_USER } =
+  import.meta.env;
 
 export const authConfig = {
   withCredentials: true,
@@ -24,14 +25,10 @@ export const logout = async () => {
 };
 
 export const downloadAPKForUser = async () => {
-  window.open(
-    'https://expo.dev/accounts/daniel.luan.tran/projects/userApp/builds/b3f5c370-832c-4c91-9c13-fba322686306',
-  );
+  window.open(VITE_ANDROID_APK_FOR_USER);
 };
 export const downloadAPKForDriver = async () => {
-  window.open(
-    'https://expo.dev/accounts/daniel.luan.tran/projects/driverApp/builds/7a223692-cdee-48d9-98b9-9518d0609866',
-  );
+  window.open(VITE_ANDROID_APK_FOR_DRIVER);
 };
 
 export default axios;

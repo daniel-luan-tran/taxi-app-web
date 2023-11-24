@@ -53,3 +53,7 @@ export const createBookingHistory = async (data: BookingHistoryUpdate) => {
   };
   await axios.post(`/v1/booking-history/`, updateData, authConfig);
 };
+
+export const deleteBooking = async (id: string) => {
+  await axios.delete(`/v1/booking-history/${id}`, authConfig);
+};

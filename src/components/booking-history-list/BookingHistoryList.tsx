@@ -12,7 +12,8 @@ import useSearchParamsState from '../../hooks/useSearchParamsState';
 import { BookingTypeDropdown } from '../dropdowns';
 
 export const BookingHistoryList = () => {
-  const [query, setQuery] = useState('');
+  const [queryName, setQueryName] = useState('');
+  const [queryPhone, setQueryPhone] = useState('');
   const [bookingTypeParam, setBookingTypeParam] = useSearchParamsState(
     'bookingType',
     'ALL',
@@ -23,10 +24,11 @@ export const BookingHistoryList = () => {
   }, []);
 
   // Fetch data
-  const { isLoading, data: bookingHistories } = useQuery(
-    ['getBookingHistory'],
-    async () => await getBookingHistory(),
-  );
+  const {
+    isLoading,
+    data: bookingHistories,
+    refetch,
+  } = useQuery(['getBookingHistory'], async () => await getBookingHistory());
 
   // Filter data to match query
   const filteredHistories = useMemo(() => {
@@ -34,12 +36,14 @@ export const BookingHistoryList = () => {
     return bookingHistories
       .filter((bookingHistory: BookingHistory) => {
         return (
-          bookingHistory.driver.account.displayName
+          (bookingHistory.driver.account.displayName
             ?.toLowerCase()
-            .includes(query.toLowerCase()) ||
-          bookingHistory.user.account.displayName
-            ?.toLowerCase()
-            .includes(query.toLowerCase())
+            .includes(queryName.toLowerCase()) ||
+            bookingHistory.user.account.displayName
+              ?.toLowerCase()
+              .includes(queryName.toLowerCase())) &&
+          (bookingHistory.driver.account.phoneNumber.includes(queryPhone) ||
+            bookingHistory.user.account.phoneNumber.includes(queryPhone))
         );
       })
       .filter((item) => {
@@ -49,7 +53,7 @@ export const BookingHistoryList = () => {
           return item.bookingType === bookingTypeParam;
         }
       });
-  }, [bookingHistories, query, bookingTypeParam]);
+  }, [bookingHistories, queryName, queryPhone, bookingTypeParam]);
 
   const navigate = useNavigate();
 
@@ -59,19 +63,28 @@ export const BookingHistoryList = () => {
         <h1 style={{ width: 'auto', margin: 0 }}>Booking history</h1>
         <div
           style={{
-            minWidth: 400,
+            minWidth: 550,
             maxWidth: 500,
             // display: 'flex',
             // flexDirection: 'column',
           }}
         >
-          <TextInput
-            placeholder="Search passenger or driver name"
-            value={query}
-            onChange={setQuery}
-            icon="IoSearch"
-            rounded
-          />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 60 }}>
+            <TextInput
+              placeholder="Search passenger or driver name"
+              value={queryName}
+              onChange={setQueryName}
+              icon="IoSearch"
+              rounded
+            />
+            <TextInput
+              placeholder="Search passenger or driver phone"
+              value={queryPhone}
+              onChange={setQueryPhone}
+              icon="IoSearch"
+              rounded
+            />
+          </div>
           <BookingTypeDropdown
             onChange={setBookingTypeParam}
             value={bookingTypeParam}
@@ -95,6 +108,7 @@ export const BookingHistoryList = () => {
           }) || []
         }
         isLoading={isLoading}
+        refetch={refetch}
       />
     </div>
   );
